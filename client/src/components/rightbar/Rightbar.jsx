@@ -12,7 +12,7 @@ import { useState } from "react";
 
 export default function Rightbar({ user }) {
   const HomeRightbar = () => {
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const PF = "public/assets/";
     return (
       <>
         <div className="birthdayContainer">

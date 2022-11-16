@@ -4,7 +4,7 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 
 export default function Friend({ id }) {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = "public/assets/"
 
   const [user, setUser] = useState(null);
 

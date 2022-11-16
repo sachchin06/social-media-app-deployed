@@ -21,7 +21,7 @@ export default function Profile() {
     fetchUser()
   }, [username])
 
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER
+  const PF = "public/assets/"
 // console.log(params);
 
   return (
