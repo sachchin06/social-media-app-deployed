@@ -25,8 +25,14 @@ app.use(helmet())
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"))
 
+// If no API routes are hit, send the React app
+app.use(function(req, res) {
+	res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+
 app.get("/",(req,res)=>{
-    res.send("welcome")
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
 })
 
 // API routes
@@ -34,10 +40,6 @@ app.use("/users", userRoute)
 app.use("/auth", authRoute)
 app.use("/posts", postRoute)
 
-// If no API routes are hit, send the React app
-app.use(function(req, res) {
-	res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
 
 
 const PORT = process.env.PORT || 5000;
