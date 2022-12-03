@@ -19,31 +19,35 @@ mongoose.connect(process.env.MONGO_URL, ()=> {
 app.use(express.json())
 
 // ADD THIS FOR DEPLOYMENT
-app.use(express.static('client/build'));
+// app.use(express.static('client/build'));
+// app.use(express.static(path.resolve(__dirname, '../client/build')));
+
 
 app.use(helmet())
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"))
 
-// If no API routes are hit, send the React app
-app.use(function(req, res) {
-	res.sendFile(path.join(__dirname, 'client/build/index.html'));
-});
-
-
 app.get("/",(req,res)=>{
-    res.sendFile(path.join(__dirname, 'client/build/index.html'));
+    res.send("welcome");
 })
-
-// API routes
-app.use("/users", userRoute)
-app.use("/auth", authRoute)
-app.use("/posts", postRoute)
+// app.get("/",(req,res)=>{
+//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// })
 
 
+// // If no API routes are hit, send the React app
+// app.use(function(req, res) {
+// 	res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
 
-const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-	console.log(`Server listening on port ${PORT}.`);
-});
+
+app.use("/api/users", userRoute)
+app.use("/api/auth", authRoute)
+app.use("/api/posts", postRoute)
+
+const PORT =process.env.PORT || 8800
+
+app.listen(PORT, ()=>{
+    console.log(`Backend server is running on ${PORT}`);
+})
