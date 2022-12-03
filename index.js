@@ -16,6 +16,8 @@ mongoose.connect(process.env.MONGO_URL, ()=> {
 });
 
  //middleware
+
+
 app.use(express.json())
 
 // ADD THIS FOR DEPLOYMENT
